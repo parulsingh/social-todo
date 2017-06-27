@@ -16,12 +16,11 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <div style={{position: 'relative'}}>
           <AppBar title={ 'social-todo' } showMenuIconButton={false}/>
-          <TextField
-            hintText="What needs to get done?"
-          /><br />
-          <List>
+          <TextField style={{marginLeft: '45%'}} hintText="What needs to get done?"/>
+          <br />
+          <List style={{marginLeft: '45%'}}>
           <ListItem
             leftCheckbox={<Checkbox />}
             primaryText="Unpack boxes"
@@ -34,8 +33,8 @@ class App extends Component {
           />
           <ListItem
             leftCheckbox={<Checkbox />}
-            primaryText="Call babe"
-            secondaryText="<3"
+            primaryText="Phone call"
+            secondaryText=""
           />
         </List>
         </div>
