@@ -1,42 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {AppBar} from 'material-ui';
-import {List, ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
+import TodoList from './TodoList.js';
+import TodoTextField from './TodoTextField.js';
+
 
 injectTapEventPlugin();
 
 
 class App extends Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {items: []};
+      this.updateItems = this.updateItems.bind(this);
+    }
+
+  updateItems (newItem) {
+    var allItems = this.state.items.concat([newItem]);
+    this.setState({items: allItems});
+  }
+
   render() {
     return (
       <MuiThemeProvider>
         <div style={{position: 'relative'}}>
           <AppBar title={ 'social-todo' } showMenuIconButton={false}/>
-          <TextField style={{marginLeft: '45%'}} hintText="What needs to get done?"/>
+          <TodoTextField onEnterClick={this.updateItems}/>
           <br />
-          <List style={{marginLeft: '45%'}}>
-          <ListItem
-            leftCheckbox={<Checkbox />}
-            primaryText="Unpack boxes"
-            secondaryText="flatten them after"
-          />
-          <ListItem
-            leftCheckbox={<Checkbox />}
-            primaryText="Finish Zachary's"
-            secondaryText="Heat in oven"
-          />
-          <ListItem
-            leftCheckbox={<Checkbox />}
-            primaryText="Phone call"
-            secondaryText=""
-          />
-        </List>
+          <TodoList items={this.state.items}/>
         </div>
       </MuiThemeProvider>
     );
