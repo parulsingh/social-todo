@@ -14,6 +14,9 @@ class TodoTextField extends Component {
 	handleKeyPress(target) {
 		if(target.charCode === 13){
 			this.props.onEnterClick(this.state.text);
+			this.setState({
+				text: ''
+			});
 		}
 	}
 
@@ -25,7 +28,8 @@ class TodoTextField extends Component {
 
 	render() {
 		return(
-	      <TextField 
+	      <TextField
+	      	  value={this.state.text} 
 	      	  style={{marginLeft: '45%'}} 
 	      	  onChange={this.onChange}
 	          onKeyPress={this.handleKeyPress} 
