@@ -12,8 +12,8 @@ class TodoList extends Component {
 	            {this.props.items.map((e, index) => (
 	            	<div style={{width: '300px'}}>
 			          <ListItem
-			            leftCheckbox={<Checkbox />}
-			            rightIconButton={<IconButton onTouchTap={ this.props.handleXButton.bind(this, index)}>
+			            leftCheckbox={<Checkbox onCheck={this.props.handleCheckButton.bind(this, index)}/>}
+			            rightIconButton={<IconButton onTouchTap={this.props.handleXButton.bind(this, index)}>
                                  <Clear />
                              </IconButton>}
 			            primaryText= {e}
