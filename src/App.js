@@ -16,10 +16,17 @@ class App extends Component {
       super(props);
       this.state = {items: []};
       this.updateItems = this.updateItems.bind(this);
+      this.handleXButton = this.handleXButton.bind(this);
     }
 
   updateItems (newItem) {
     var allItems = this.state.items.concat([newItem]);
+    this.setState({items: allItems});
+  }
+
+  handleXButton (removedItemIndex) {
+    var allItems = this.state.items;
+    allItems.splice(removedItemIndex, 1);
     this.setState({items: allItems});
   }
 
@@ -30,7 +37,7 @@ class App extends Component {
           <AppBar title={ 'social-todo' } showMenuIconButton={false}/>
           <TodoTextField onEnterClick={this.updateItems}/>
           <br />
-          <TodoList items={this.state.items}/>
+          <TodoList items={this.state.items} handleXButton={this.handleXButton}/>
         </div>
       </MuiThemeProvider>
     );
