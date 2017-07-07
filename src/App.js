@@ -25,12 +25,9 @@ class App extends Component {
   }
 
   handleXButton (removedItemIndex) {
-    console.log(removedItemIndex);
-    console.log(this.state.items);
     var allItems = this.state.items;
     allItems.splice(removedItemIndex, 1);
     this.setState({items: allItems});
-    console.log(allItems);
   }
 
   render() {
