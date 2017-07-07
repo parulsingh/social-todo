@@ -13,7 +13,7 @@ class TodoList extends Component {
 	            	<div style={{width: '300px'}}>
 			          <ListItem
 			            leftCheckbox={<Checkbox />}
-			            rightIconButton={<IconButton onTouchTap={this.props.handleXButton(index)}>
+			            rightIconButton={<IconButton onTouchTap={ this.props.handleXButton.bind(this, index)}>
                                  <Clear />
                              </IconButton>}
 			            primaryText= {e}
