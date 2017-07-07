@@ -51,7 +51,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div style={{position: 'relative'}}>
           <AppBar 
-            title={ 'social-todo' } 
+            title={'social-todo'} 
             showMenuIconButton={false} 
             iconElementRight={<FlatButton label="Completed" onTouchTap={this.handleToggle} />}/>
           <Drawer width={300} open={this.state.open} >
