@@ -23,17 +23,18 @@
   to { transform: rotate(360deg); }
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:100');
 
 #completed {
   text-align: center;
   color: teal;
-  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-family: 'Roboto', sans-serif, thin;
 }
 
 #title {
   font-size: 50px;
   text-align: center;
   color: teal;
-  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-family: 'Roboto', sans-serif, thin;
 }

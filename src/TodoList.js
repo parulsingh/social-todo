@@ -8,7 +8,7 @@ class TodoList extends Component {
 
 	render() {
 		return(
-			<List style={{marginLeft: '45%'}}>
+			<List style={{marginLeft: '40%'}}>
 	            {this.props.items.map((e, index) => (
 	            	<div style={{width: '300px'}}>
 			          <ListItem

@@ -34,14 +34,17 @@ class App extends Component {
   }
 
   handleCheckButton (completedItemIndex) {
-    var allItems = this.state.items;
-    var completedItem = allItems.splice(completedItemIndex, 1);
-    this.setState({items: allItems});
-    var allCompletedItems = this.state.completedItems.concat({
-      item: completedItem,
-      date: new Date().toLocaleString(),
-     });
-    this.setState({completedItems: allCompletedItems});
+    var that = this;
+    setTimeout(function(){
+      var allItems = that.state.items;
+      var completedItem = allItems.splice(completedItemIndex, 1);
+      that.setState({items: allItems});
+      var allCompletedItems = that.state.completedItems.concat({
+        item: completedItem,
+        date: new Date().toLocaleString(),
+       });
+      that.setState({completedItems: allCompletedItems});
+    }, 2000); 
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
@@ -49,7 +52,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div style={{position: 'relative'}}>
+        <div>
           <AppBar 
             title={'social-todo'} 
             showMenuIconButton={false} 
@@ -58,10 +61,13 @@ class App extends Component {
             <h1 id="completed"> completed </h1>
             <CompletedList items={this.state.completedItems} handleXButton={this.handleXButton}/>
           </Drawer>
+          <div style={{textAlign: 'center'}}>
           <h1 id="title"> t  o  d  o </h1>
           <TodoTextField onEnterClick={this.updateItems}/>
-          <br />
+          <br /> <br /> <br /> <br />
+          </div>
           <TodoList items={this.state.items} handleXButton={this.handleXButton} handleCheckButton={this.handleCheckButton}/>
+
         </div>
       </MuiThemeProvider>
     );
