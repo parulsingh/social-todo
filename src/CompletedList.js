@@ -7,7 +7,7 @@ class CompletedList extends Component {
 		return(
 			<List>
 	            {this.props.items.map((e, index) => (
-	            	<div style={{width: '300px'}}>
+	            	<div style={{width: '300px'}} key={index}>
 			          <ListItem
 			            primaryText = {e.item}
 			            secondaryText = {e.date}

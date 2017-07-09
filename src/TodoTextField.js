@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import {black500, blue500} from 'material-ui/styles/colors';
+import {black500} from 'material-ui/styles/colors';
 
 
 class TodoTextField extends Component {

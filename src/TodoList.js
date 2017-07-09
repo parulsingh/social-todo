@@ -10,9 +10,8 @@ class TodoList extends Component {
 		return(
 			<List style={{marginLeft: '40%'}}>
 	            {this.props.items.map((e, index) => (
-	            	<div style={{width: '300px'}}>
+	            	<div style={{width: '300px'}} key={index}>
 			          <ListItem
-			          	key={index}
 			            leftCheckbox={<Checkbox onCheck={this.props.handleCheckButton.bind(this, index)}/>}
 			            rightIconButton={<IconButton onTouchTap={this.props.handleXButton.bind(this, index)}>
                                  <Clear />
