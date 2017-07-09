@@ -44,7 +44,7 @@ class App extends Component {
         date: new Date().toLocaleString(),
        });
       that.setState({completedItems: allCompletedItems});
-    }, 2000); 
+    }, 1000); 
   }
 
   handleToggle = () => this.setState({open: !this.state.open});
