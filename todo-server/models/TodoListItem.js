@@ -17,8 +17,16 @@ function addTodoListItem(data) {
     })
 }
 
+function markCompleted(id) {
+    var query = {'_id':id};
+    var toChange = {isCompleted : true}
+	TodoListItem.findOneAndUpdate(query, toChange, function(err, todo){
+	return err;
+	});
+}
+
 function handleError(err) {
 	console.log(err);
 }
 
-module.exports = {TodoListItem, addTodoListItem};
+module.exports = {TodoListItem, addTodoListItem, markCompleted};
