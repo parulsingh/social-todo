@@ -8,6 +8,7 @@ import CompletedList from './CompletedList.js';
 import TodoTextField from './TodoTextField.js';
 import FlatButton from 'material-ui/FlatButton';
 import Drawer from 'material-ui/Drawer';
+import axios from 'axios';
 
 injectTapEventPlugin();
 
@@ -16,16 +17,27 @@ class App extends Component {
 
   constructor(props) {
       super(props);
-      this.state = {items: [], open: false, completedItems: [], users: []};
+      this.state = {
+        items: [], 
+        open: false, 
+        completedItems: [], 
+        users: []
+      };
       this.updateItems = this.updateItems.bind(this);
       this.handleXButton = this.handleXButton.bind(this);
       this.handleCheckButton = this.handleCheckButton.bind(this);
+      this.componentDidMount = this.componentDidMount.bind(this);
     }
 
   componentDidMount() {
-    fetch('/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
+    axios.get('/users')
+      .then( (response) => {
+        console.log(response);
+        this.setState({users: response.data})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   updateItems (newItem) {
