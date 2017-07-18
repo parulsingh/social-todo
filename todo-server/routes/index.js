@@ -63,4 +63,16 @@ router.get('/unfinished_todos/:userName', function(req, res, next) {
 	  res.send(todosForPerson)
 	})
 });
+
+/* DELETE remove unfinished todo */
+router.delete('/remove_todo/:id', function(req, res, next) {
+	TodoListItem.findById( req.params.id, function ( err, item ){
+        item.remove( function ( err, item ){
+	        if (err) res.json(err);
+		  	res.json({success: true});
+        });
+    });
+});
+
+
 module.exports = router;
