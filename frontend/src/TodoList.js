@@ -10,13 +10,13 @@ class TodoList extends Component {
 		return(
 			<List style={{marginLeft: '40%'}}>
 	            {this.props.items.map((e, index) => (
-	            	<div style={{width: '300px'}} key={e}>
+	            	<div style={{width: '300px'}} key={e._id}>
 			          <ListItem
-			            leftCheckbox={<Checkbox onCheck={this.props.handleCheckButton.bind(this, index)}/>}
-			            rightIconButton={<IconButton onTouchTap={this.props.handleXButton.bind(this, index)}>
+			            leftCheckbox={<Checkbox onCheck={this.props.handleCheckButton.bind(this, e._id)}/>}
+			            rightIconButton={<IconButton onTouchTap={this.props.handleXButton.bind(this, e._id)}>
                                  <Clear />
                              </IconButton>}
-			            primaryText= {e}
+			            primaryText= {e.todoText}
 			          />
 		          </div>
 	    		))}

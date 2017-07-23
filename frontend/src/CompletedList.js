@@ -7,10 +7,10 @@ class CompletedList extends Component {
 		return(
 			<List>
 	            {this.props.items.map((e, index) => (
-	            	<div style={{width: '300px'}} key={index}>
+	            	<div style={{width: '300px'}} key={e._id}>
 			          <ListItem
-			            primaryText = {e.item}
-			            secondaryText = {e.date}
+			            primaryText = {e.todoText}
+			            secondaryText = {e.timeCompleted}
 			          />
 		          </div>
 	    		))}

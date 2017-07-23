@@ -30,10 +30,10 @@ class App extends Component {
     }
 
   componentDidMount() {
-    axios.get('/users')
+    this.getAllItemsAndSetState();
+     axios.get('/completed_todos/Parul')
       .then( (response) => {
-        console.log(response);
-        this.setState({users: response.data})
+        this.setState({completedItems: response.data})
       })
       .catch(function (error) {
         console.log(error);
@@ -41,28 +41,56 @@ class App extends Component {
   }
 
   updateItems (newItem) {
-    var allItems = this.state.items.concat([newItem]);
-    this.setState({items: allItems});
+    axios.post('/newtodo', {
+      "createdBy": "Parul",
+      "todoText": newItem,
+      "isCompleted": false,
+      "timeCreated": new Date().toLocaleString()
+    })
+    .then((response) => {
+      this.getAllItemsAndSetState();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
-  handleXButton (removedItemIndex) {
-    var allItems = this.state.items;
-    allItems.splice(removedItemIndex, 1);
-    this.setState({items: allItems});
+  handleXButton (removedItemId) {
+    axios.delete('/remove_todo/'+ removedItemId)
+      .then( (response) => {
+        this.getAllItemsAndSetState();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
-  handleCheckButton (completedItemIndex) {
-    var that = this;
-    setTimeout(function(){
-      var allItems = that.state.items;
-      var completedItem = allItems.splice(completedItemIndex, 1);
-      that.setState({items: allItems});
-      var allCompletedItems = that.state.completedItems.concat({
-        item: completedItem,
-        date: new Date().toLocaleString(),
-       });
-      that.setState({completedItems: allCompletedItems});
-    }, 1000); 
+  getAllItemsAndSetState = () => {
+    axios.get('/unfinished_todos/Parul')
+      .then( (response) => {
+        this.setState({items: response.data})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  
+
+  handleCheckButton (completedItemId) {
+    axios.post('/mark_completed/' + completedItemId)
+    .then((response) => {
+      this.getAllItemsAndSetState();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    axios.get('/completed_todos/Parul')
+      .then( (response) => {
+        this.setState({completedItems: response.data})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleToggle = () => {this.setState({open: !this.state.open})};
@@ -85,10 +113,6 @@ class App extends Component {
           <br /> <br /> <br /> <br />
           </div>
           <TodoList items={this.state.items} handleXButton={this.handleXButton} handleCheckButton={this.handleCheckButton}/>
-          <h1>Users</h1>
-          {this.state.users.map(user =>
-            <div key={user.id}>{user.username}</div>
-          )}
         </div>
       </MuiThemeProvider>
     );

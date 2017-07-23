@@ -66,6 +66,7 @@ router.get('/unfinished_todos/:userName', function(req, res, next) {
 
 /* DELETE remove unfinished todo */
 router.delete('/remove_todo/:id', function(req, res, next) {
+	console.log(req.params.id);
 	TodoListItem.findById( req.params.id, function ( err, item ){
         item.remove( function ( err, item ){
 	        if (err) res.json(err);
